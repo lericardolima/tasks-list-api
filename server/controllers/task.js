@@ -45,3 +45,18 @@ exports.update = (req, res) => {
                     })
                     .catch(error => res.status(400).send(error));
 }
+
+exports.delete = (req, res) => {
+    return Task.findByPk(req.params.taskId)
+                    .then(task => {
+                        if (!task)
+                            return res.status(404).send({
+                                message: 'Task not found'
+                            });
+
+                        return task.destroy()
+                                    .then(() => res.status(204).send(task))
+                                    .catch(error => res.status(400).send(error));
+                    })
+                    .catch(error => res.status(400).send(error));
+}
