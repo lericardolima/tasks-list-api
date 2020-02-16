@@ -1,9 +1,10 @@
 const taskController = require('../controllers').tasks;
+const path = require('path');
 
 module.exports = (app) => {
 
-    app.get('/api', (req, res) => res.status(200).send({
-        message: 'Welcome to the Tasks list API'
+    app.get('/api', (req, res) => res.sendFile('index.html', {
+        root: path.join(__dirname, './')
     }));
 
     app.post('/api/tasks', taskController.create);
