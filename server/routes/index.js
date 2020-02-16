@@ -9,5 +9,6 @@ module.exports = (app) => {
     app.post('/api/tasks', taskController.create);
     app.get('/api/tasks', taskController.list);
     app.get('/api/tasks/:taskId', taskController.get);
+    app.put('/api/tasks/:taskId', taskController.update);
 
 }
