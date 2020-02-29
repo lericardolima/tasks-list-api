@@ -1,0 +1,164 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.1.0",
+        "title": "List of tasks API",
+        "description": "RESTful API created for educational purposes."
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Tasks"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tasks": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Create a new task",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task that you want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New task is created",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get all existing tasks",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Tasks"
+                        }
+                    }
+                }
+            }
+        },
+        "/tasks/{taskId}": {
+            "parameters": [
+                {
+                    "name": "taskId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the task you want",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get task with given ID",
+                "responses": {
+                    "200": {
+                        "description": "Task is found",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete task with given ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update task with give ID",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task you want to update",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task is updated",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Task": {
+            "required": [
+                "description"
+            ],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "uniqueItems": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "pending", "ongoing", "completed"
+                    ]
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tasks": {
+            "type": "array",
+            "$ref": "#/definitions/Task"
+        }
+    }
+}

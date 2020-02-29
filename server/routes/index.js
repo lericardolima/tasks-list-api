@@ -1,11 +1,11 @@
 const taskController = require('../controllers').tasks;
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('../../swagger.json');
 
 module.exports = (app) => {
-
-    app.get('/api', (req, res) => res.sendFile('index.html', {
-        root: path.join(__dirname, './')
-    }));
+    
+    app.use('/api/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
     app.post('/api/tasks', taskController.create);
     app.get('/api/tasks', taskController.list);
