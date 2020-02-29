@@ -86,3 +86,63 @@ describe('GET task/:taskId', () => {
         });
     });
 });
+
+describe('PUT task/:taskId', () => {
+    it('Should update a task with given ID', (done) => {
+
+        Task.create({
+            description: 'Do nothing until 6pm'
+        }).then(task => {
+
+            const updatedAt = task.updatedAt;
+            chai.request(app)
+                .put(`/api/tasks/${task.id}`)
+                .send({
+                    description: 'Work until 6pm',
+                    status: 'completed'
+                })
+                .end((error, response) => {
+                    response.should.have.status(200);
+                    response.body.should.be.a('object');
+                    response.body.should.have.property('id').eq(task.id);
+                    response.body.should.have.property('description').eq('Work until 6pm');
+                    response.body.should.have.property('status').eq('completed');
+                    response.body.should.have.property('updatedAt').not.eq(updatedAt);
+                    done();
+                });
+        });
+    });
+});
+
+describe('DELETE task/:taskId', function () {
+    it('Should delete a task with given ID', function (done) {
+
+        Task.create({
+            description: 'Watch TV'
+        }).then(task => {
+            chai.request(app)
+                .delete(`/api/tasks/${task.id}`)
+                .end((error, response) => {
+                    response.should.have.status(204);
+                    response.body.should.be.empty;
+
+                    chai.request(app)
+                            .get(`/api/tasks/${task.id}`)
+                            .end((err, res) => {
+                                res.should.have.status(404);
+                                res.body.should.have.property('message').eq('Task not found');
+                                done();
+                            })
+                });
+        });
+    });
+});
+
+after((done) => {
+    Task.destroy({
+        where: {}
+    })
+        .then(() => {
+            done();
+        });
+})
