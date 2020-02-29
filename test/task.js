@@ -56,3 +56,33 @@ describe('POST task', () => {
             });
     })
 });
+
+describe('GET tasks', () => {
+    it('Should list all tasks', (done) => {
+        chai.request(app)
+            .get('/api/tasks')
+            .end((error, response) => {
+                response.should.have.status(200);
+                response.body.should.be.a('array');
+                done();
+            });
+    });
+});
+
+describe('GET task/:taskId', () => {
+    it('Should get a task by ID', (done) => {
+
+        Task.create({
+            description: 'Exercise'
+        }).then(task => {
+            chai.request(app)
+                .get(`/api/tasks/${task.id}`)
+                .end((error, response) => {
+                    response.should.have.status(200);
+                    response.body.should.be.a('object');
+                    response.body.should.have.property('id').eq(task.id);
+                    done();
+                });
+        });
+    });
+});
