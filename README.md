@@ -4,32 +4,70 @@
 RESTful API created for educational purposes. This exercise was based on the following tutorials:
 * [Build Node.js RESTful APIs in 10 Minutes](https://www.codementor.io/@olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)
 * [Getting Started with Node, Express and Postgres Using Sequelize](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize)
-
+* [Simple rest api builing with mysql and express js and testing with mocha and chai](https://medium.com/@tariqul.islam.rony/simple-rest-api-builing-with-mysql-and-express-js-and-testing-with-mocha-and-chai-ed0d19f25f79)
+* [Adding Swagger To Existing Node.js Project](https://blog.cloudboost.io/adding-swagger-to-existing-node-js-project-92a6624b855b)
+---
 ### Technologies
 
+* [npm](https://www.npmjs.com/)
 * [Node.js](https://nodejs.org/en/)
 * [PostgreSQL](https://www.postgresql.org/)
+* [ElephantSQL](https://www.elephantsql.com/)
 * [Sequelize](https://sequelize.org/)
 * [Express](https://expressjs.com/pt-br/)
 * [nodemon](https://nodemon.io/)
+* [Mocha](https://mochajs.org/)
+* [Chai Assertion Library](https://www.chaijs.com/)
+* [Swagger](https://swagger.io/)
+* [GitHub Actions](https://github.com/features/actions)
+* [Heroku](https://dashboard.heroku.com/)
+* [dotenv](https://www.npmjs.com/package/dotenv)
+---
+### Explore
 
-### Configuration
+  The Task List API and its Swagger documentation page are available on [Heroku](https://lericardolima-task-list-api.herokuapp.com/api/swagger-ui/).
 
-To set the database configuration, open the file `./server/config/config.json` and change the properties as below:
+---
+### Installation
 
-```json
-{
-  "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "taskListDB",
-    "host": "localhost",
-    "port": 5432,
-    "dialect": "postgres"
-  }
-}
-```
-Then run the following code in the project root directory:
-```
-npm run start:dev
-```
+You cant set your development environment following these steps:
+
+* **Choose your database**
+
+  Create a `.env` file in the root path and add your PostgresSQL database configuration for development and/or test
+  ```
+  DEVELOPMENT_POSTGRES_HOST=host
+  DEVELOPMENT_POSTGRES_DATABASE=database
+  DEVELOPMENT_POSTGRES_USERNAME=username
+  DEVELOPMENT_POSTGRES_PASSWORD=password
+
+  TEST_POSTGRES_HOST=host
+  TEST_POSTGRES_DATABASE=database
+  TEST_POSTGRES_USERNAME=username
+  TEST_POSTGRES_PASSWORD=password
+  ```
+* **Install dependencies**
+
+  Then run the following to build the dependencies:
+  ```
+  npm install
+  ```
+* **Run**
+
+  And now you are able to run the server:
+  ```
+  npm run start:dev
+  ```
+  The API documentantion will be available on [localhost:8000/api](http://localhost:8000/api/).
+* **Test**
+
+  To run the test just use:
+  ```
+  npm test
+  ```
+ ---
+  ## Contributor
+  
+   **Ricardo de Lima Rocha**
+  * [Linkedin](https://www.linkedin.com/in/ricardo-de-lima-rocha/)
+  * [GitHub](https://github.com/lericardolima)
