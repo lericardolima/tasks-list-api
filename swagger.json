@@ -5,7 +5,6 @@
         "title": "List of tasks API",
         "description": "RESTful API created for educational purposes."
     },
-    "host": "localhost:8000",
     "basePath": "/api",
     "tags": [
         {
@@ -13,7 +12,7 @@
         }
     ],
     "schemes": [
-        "http"
+        "https", "http"
     ],
     "consumes": [
         "application/json"

@@ -1,9 +1,12 @@
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const app = require('express')();
+const cors = require('cors');
 
-app.use(logger('dev'));
+if (process.env.NODE_ENV !== 'production')
+    app.use(logger('dev'));
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

@@ -1,4 +1,5 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production')
+  require('dotenv').config();
 
 module.exports = {
   "development": {
@@ -13,6 +14,10 @@ module.exports = {
     "password": process.env.TEST_POSTGRES_PASSWORD,
     "database": process.env.TEST_POSTGRES_DATABASE,
     "host": process.env.TEST_POSTGRES_HOST,
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   }
 }
