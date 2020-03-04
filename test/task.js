@@ -36,14 +36,13 @@ afterEach((done) => {
 })
 
 describe('POST task', () => {
-    it('Should create a new default status task', (done) => {
-        const task = {
-            description: 'Write tests'
-        }
+    it('Should create a new task with default status', (done) => {
 
         chai.request(app)
             .post('/api/tasks')
-            .send(task)
+            .send({
+                description: 'Write tests'
+            })
             .end((error, response) => {
                 response.should.have.status(201);
                 response.body.should.be.a('object');
@@ -57,17 +56,16 @@ describe('POST task', () => {
             });
     })
 });
-describe('POST task', () => {
-    it('Should create a new specific status task', (done) => {
 
-        const task = {
-            description: 'Procrastinate',
-            status: 'ongoing'
-        }
+describe('POST task', () => {
+    it('Should create a new task with a not default status', (done) => {
 
         chai.request(app)
             .post('/api/tasks')
-            .send(task)
+            .send({
+                description: 'Procrastinate',
+                status: 'ongoing'
+            })
             .end((error, response) => {
                 response.should.have.status(201);
                 response.body.should.be.a('object');
@@ -82,6 +80,39 @@ describe('POST task', () => {
     })
 });
 
+describe('POST task', () => {
+    it('Should not create a new task with an invalid status', (done) => {
+
+        chai.request(app)
+            .post('/api/tasks')
+            .send({
+                description: 'Write tests',
+                status: 'cancelled'
+            })
+            .end((error, response) => {
+                response.should.have.status(400);
+                response.should.have.property('statusType').eq(4);
+                done();
+            });
+    })
+});
+
+describe('POST task', () => {
+    it('Should not create a new task without description', (done) => {
+
+        chai.request(app)
+            .post('/api/tasks')
+            .send({
+                status: 'ongoing'
+            })
+            .end((error, response) => {
+                response.should.have.status(400);
+                response.should.have.property('statusType').eq(4);
+                done();
+            });
+    })
+});
+
 describe('GET tasks', () => {
     it('Should list all tasks', (done) => {
         chai.request(app)
@@ -89,7 +120,6 @@ describe('GET tasks', () => {
             .end((error, response) => {
                 response.should.have.status(200);
                 response.body.should.be.a('array');
-                response.body.should.have.lengthOf(1);
                 done();
             });
     });
@@ -104,6 +134,32 @@ describe('GET task/:taskId', () => {
                 response.should.have.status(200);
                 response.body.should.be.a('object');
                 response.body.should.have.property('id').eq(this.task.id);
+                done();
+            });
+    });
+});
+
+describe('GET task/:taskId', () => {
+    it('Should not get a task by unexisting ID', (done) => {
+
+        chai.request(app)
+            .get(`/api/tasks/${-1}`)
+            .end((error, response) => {
+                response.should.have.status(404);
+                response.body.should.have.property('message').eq('Task not found');
+                done();
+            });
+    });
+});
+
+describe('GET task/:taskId', () => {
+    it('Should not get a task by invalid ID', (done) => {
+
+        chai.request(app)
+            .get('/api/tasks/id')
+            .end((error, response) => {
+                response.should.have.status(400);
+                response.should.have.property('statusType').eq(4);
                 done();
             });
     });
@@ -131,6 +187,39 @@ describe('PUT task/:taskId', () => {
     });
 });
 
+describe('PUT task/:taskId', () => {
+    it('Should not update a task with an invalid value', (done) => {
+
+        const updatedAt = this.task.updatedAt;
+        chai.request(app)
+            .put(`/api/tasks/${this.task.id}`)
+            .send({
+                name: 'Work until 6pm'
+            })
+            .end((error, response) => {
+                response.should.have.status(400);
+                done();
+            });
+    });
+});
+
+describe('PUT task/:taskId', () => {
+    it('Should not update a task with an unexisting ID', (done) => {
+
+        chai.request(app)
+            .put(`/api/tasks/${-1}`)
+            .send({
+                description: 'Work until 6pm',
+                status: 'completed'
+            })
+            .end((error, response) => {
+                response.should.have.status(404);
+                response.body.should.have.property('message').eq('Task not found');
+                done();
+            });
+    });
+});
+
 describe('DELETE task/:taskId', () => {
     it('Should delete a task with given ID', (done) => {
 
@@ -148,6 +237,31 @@ describe('DELETE task/:taskId', () => {
                         res.body.should.have.property('message').eq('Task not found');
                         done();
                     })
+            });
+    });
+});
+
+describe('DELETE task/:taskId', () => {
+    it('Should not delete a task with unexisting ID', (done) => {
+
+        chai.request(app)
+            .delete(`/api/tasks/${-1}`)
+            .end((error, response) => {
+                response.should.have.status(404);
+                response.body.should.have.property('message').eq('Task not found');
+                done();
+            });
+    });
+});
+
+describe('DELETE task/:taskId', () => {
+    it('Should not delete a task with invalid ID', (done) => {
+
+        chai.request(app)
+            .delete('/api/tasks/id')
+            .end((error, response) => {
+                response.should.have.status(400);
+                done();
             });
     });
 });
