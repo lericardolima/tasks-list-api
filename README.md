@@ -23,6 +23,7 @@ RESTful API created for educational purposes. This exercise was based on the fol
 * [Heroku](https://dashboard.heroku.com/)
 * [dotenv](https://www.npmjs.com/package/dotenv)
 * [istanbul](https://istanbul.js.org/)
+* [Coveralls](https://coveralls.io/)
 ---
 ### Explore
 
@@ -62,7 +63,7 @@ You cant set your development environment following these steps:
   The API documentantion will be available on [localhost:8000/api](http://localhost:8000/api/).
 * **Test**
 
-  To run the test just use:
+  To run the test and see the test coverage just run:
   ```
   npm test
   ```

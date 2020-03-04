@@ -4,7 +4,6 @@ on:
   push:
     branches: 
       - develop
-      - feature/ci-cd
   pull_request:
     branches: 
       - master
@@ -43,4 +42,9 @@ jobs:
         TEST_POSTGRES_DATABASE: postgres
         TEST_POSTGRES_USERNAME: postgres
         TEST_POSTGRES_PASSWORD: postgres
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         CI: true
