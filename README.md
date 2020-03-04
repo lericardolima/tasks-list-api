@@ -22,6 +22,7 @@ RESTful API created for educational purposes. This exercise was based on the fol
 * [GitHub Actions](https://github.com/features/actions)
 * [Heroku](https://dashboard.heroku.com/)
 * [dotenv](https://www.npmjs.com/package/dotenv)
+* [istanbul](https://istanbul.js.org/)
 ---
 ### Explore
 
