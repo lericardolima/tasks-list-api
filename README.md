@@ -1,6 +1,7 @@
 # List of tasks API
 ![Node.js CI](https://github.com/lericardolima/tasks-list-api/workflows/Node.js%20CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/lericardolima/tasks-list-api/badge.svg)](https://coveralls.io/github/lericardolima/tasks-list-api)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c77fbf6f07e240fbae1d6c2cd0f0b2e8)](https://www.codacy.com/manual/lericardolima/tasks-list-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lericardolima/tasks-list-api&amp;utm_campaign=Badge_Grade)
 
 RESTful API created for educational purposes. This exercise was based on the following tutorials:
 * [Build Node.js RESTful APIs in 10 Minutes](https://www.codementor.io/@olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)
