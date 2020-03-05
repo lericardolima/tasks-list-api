@@ -1,5 +1,6 @@
 # List of tasks API
 ![Node.js CI](https://github.com/lericardolima/tasks-list-api/workflows/Node.js%20CI/badge.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/94dc405e16954914a2e5823ce2e28b8c)](https://app.codacy.com/manual/lericardolima/tasks-list-api?utm_source=github.com&utm_medium=referral&utm_content=lericardolima/tasks-list-api&utm_campaign=Badge_Grade_Settings)
 [![Coverage Status](https://coveralls.io/repos/github/lericardolima/tasks-list-api/badge.svg)](https://coveralls.io/github/lericardolima/tasks-list-api)
 
 RESTful API created for educational purposes. This exercise was based on the following tutorials:
