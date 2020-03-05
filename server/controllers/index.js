@@ -1,5 +1,5 @@
-const tasks = require('./task');
+const tasks = require("./task");
 
 module.exports = {
-    tasks
-}
+  tasks
+};
