@@ -74,7 +74,6 @@ You cant set your development environment following these steps:
   npm test
   ```
 
- `---`
   ## Contributor
   
    **Ricardo de Lima Rocha**
